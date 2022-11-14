@@ -1,19 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import Header from "./Header.vue"
 
-defineProps<{ msg: string }>()
-
-const count = ref(0)
 </script>
 
 <template>
-  <h1>Home</h1>
-
-  <h2>{{ msg }}</h2>
-
-  <div class="card">
-    <el-button @click="count++">count is {{ count }}</el-button>
-  </div>
+  <el-container class="w-screen" direction="vertical">
+    <Header></Header>
+    <el-main>Main</el-main>
+  </el-container>
 </template>
 
 <style scoped>
