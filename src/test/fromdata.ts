@@ -8,7 +8,10 @@ labels:
 body:
   - type: markdown
     attributes:
-      value: "## Welcome!"
+      value: |
+        ## Welcome!
+        ## hi h3!
+        **555** 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 jkkkkkkkkk kkkkkkkk kkkkkkkkkkkk lllllllllllllll!
   - type: input
     id: prevalence
     attributes:
@@ -42,16 +45,29 @@ body:
         - MacPorts
         - apt-get
         - Built from source
-      multiple: false
+        - Built1
+        - Built2
+        - Built3
+      multiple: true
     validations:
       required: true
   - type: checkboxes
-    id: cat-preferences
+    id: kkk555
     attributes:
       label: What kinds of cats do you like?
       description: You may select more than one.
       options:
         - label: Orange cat (required. Everyone likes orange cats.)
           required: true
-        - label: "**Black cat**"
-        - label: 可参考 [播客录音指南](https://www.bilibili.com/video/BV1kq4y1c7Nu) 准备好录音设备与环境。`
+        - label: " **Black cat** 9999 9999 99999999 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
+          required: true
+        - label: 可参考 [播客录音指南](https://www.bilibili.com/video/BV1kq4y1c7Nu) 准备好录音设备与环境。555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555
+  - type: input
+    id: 555
+    attributes:
+      label: Bug prevalence
+      description: "How often do you or others encounter this bug?"
+      placeholder: "Whenever I visit the user account page (1-2 times a week)"
+      value: input value
+    validations:
+      required: true`
