@@ -4,12 +4,12 @@ import { reactive } from "vue";
 import { FormItemTypeEnum, MarkdownAttributesType, InputAttributesType, TextareaAttributesType, DropdownAttributesType, CheckboxesAttributesType, FormDataType, FormItemType } from '../utils/form';
 
 const { formItem, data } = defineProps<{
-    formItem: FormItemType,
+    formItem: FormItemType<FormItemTypeEnum>,
     data: FormDataType,
 }>()
 const formData = reactive(data)
 const markdownIt = new MarkdownIt();
-const checkboxesRequired = formItem.type === FormItemTypeEnum.CHECKBOXES && (formItem.attributes as CheckboxesAttributesType).options.some(({required}) => !!required)
+const checkboxesRequired = formItem.type === FormItemTypeEnum.CHECKBOXES && (formItem.attributes as CheckboxesAttributesType).options.some(({ required }) => !!required)
 </script>
 
 <template>
@@ -23,10 +23,9 @@ const checkboxesRequired = formItem.type === FormItemTypeEnum.CHECKBOXES && (for
         :prop="formItem.id">
         <el-input :placeholder="(formItem.attributes as InputAttributesType)?.placeholder"
             v-model="formData[formItem.id!]" />
-        <p class="text-sm text-gray-500 mt-1.5"
-            v-if="formItem.type === FormItemTypeEnum.INPUT && (formItem.attributes as InputAttributesType)?.description">
-            {{ (formItem.attributes as InputAttributesType)?.description }}
-        </p>
+        <div class="markdown-body github-markdown-render mt-6 mb-1.5!"
+            v-if="formItem.type === FormItemTypeEnum.INPUT && (formItem.attributes as InputAttributesType)?.description"
+            v-html="markdownIt.render((formItem.attributes as InputAttributesType)?.description || '')" />
     </el-form-item>
 
     <!--TEXTAREA-->
@@ -34,10 +33,9 @@ const checkboxesRequired = formItem.type === FormItemTypeEnum.CHECKBOXES && (for
         :label="(formItem.attributes as TextareaAttributesType).label" :required="formItem.validations?.required">
         <el-input type="textarea" :placeholder="(formItem.attributes as TextareaAttributesType)?.placeholder"
             v-model="formData[formItem.id!]" />
-        <p class="text-sm text-gray-500 mt-1.5"
-            v-if="formItem.type === FormItemTypeEnum.TEXTAREA && (formItem.attributes as TextareaAttributesType)?.description">
-            {{ (formItem.attributes as TextareaAttributesType)?.description }}
-        </p>
+        <div class="markdown-body github-markdown-render mt-6 mb-1.5!"
+            v-if="formItem.type === FormItemTypeEnum.TEXTAREA && (formItem.attributes as TextareaAttributesType)?.description"
+            v-html="markdownIt.render((formItem.attributes as TextareaAttributesType)?.description || '')" />
     </el-form-item>
 
     <!--DROPDOWN-->
@@ -48,10 +46,9 @@ const checkboxesRequired = formItem.type === FormItemTypeEnum.CHECKBOXES && (for
             <el-option v-for="item in (formItem.attributes as DropdownAttributesType).options" :key="item" :label="item"
                 :value="item" />
         </el-select>
-        <p class="text-sm text-gray-500 mt-1.5"
-            v-if="formItem.type === FormItemTypeEnum.DROPDOWN && (formItem.attributes as DropdownAttributesType)?.description">
-            {{ (formItem.attributes as DropdownAttributesType)?.description }}
-        </p>
+        <div class="markdown-body github-markdown-render mt-6 mb-1.5!"
+            v-if="formItem.type === FormItemTypeEnum.DROPDOWN && (formItem.attributes as DropdownAttributesType)?.description"
+            v-html="markdownIt.render((formItem.attributes as DropdownAttributesType)?.description || '')" />
     </el-form-item>
 
     <!--CHECKBOXES-->
@@ -66,14 +63,29 @@ const checkboxesRequired = formItem.type === FormItemTypeEnum.CHECKBOXES && (for
                     v-html="markdownIt.render(item.label)" />
             </li>
         </ul>
-
-        <p class="text-sm text-gray-500 mt-1.5"
-            v-if="formItem.type === FormItemTypeEnum.CHECKBOXES && (formItem.attributes as CheckboxesAttributesType)?.description">
-            {{ (formItem.attributes as CheckboxesAttributesType)?.description }}
-        </p>
+        <div class="markdown-body github-markdown-render mt-6 mb-1.5!"
+            v-if="formItem.type === FormItemTypeEnum.CHECKBOXES && (formItem.attributes as CheckboxesAttributesType)?.description"
+            v-html="markdownIt.render((formItem.attributes as CheckboxesAttributesType)?.description || '')" />
     </el-form-item>
 </template>
 
 <style scoped>
+:deep(.el-form-item__error) {
+    position: relative;
+    display: block;
+}
 
+:deep(.el-checkbox__label) {
+    display: none;
+}
+
+:deep(label, .el-checkbox) {
+    display: flex;
+    align-items: stretch;
+    margin-top: 0.25rem;
+}
+
+:deep(.el-checkbox.el-checkbox--large) {
+    height: initial;
+}
 </style>

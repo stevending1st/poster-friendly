@@ -51,15 +51,16 @@ export interface CheckboxesAttributesType {
     description?: string;
 }
 
-export interface FormItemType {
+export interface FormItemType<T> {
     type: FormItemTypeEnum;
     id?: string;
-    attributes: MarkdownAttributesType | InputAttributesType | TextareaAttributesType |DropdownAttributesType|CheckboxesAttributesType;
-        // T extends FormItemTypeEnum.INPUT ? InputAttributesType :
-        // T extends FormItemTypeEnum.TEXTAREA ? TextareaAttributesType :
-        // T extends FormItemTypeEnum.DROPDOWN ? DropdownAttributesType :
-        // T extends FormItemTypeEnum.CHECKBOXES ? CheckboxesAttributesType :
-        // MarkdownAttributesType;
+    attributes: 
+        // MarkdownAttributesType | InputAttributesType | TextareaAttributesType |DropdownAttributesType|CheckboxesAttributesType;
+        T extends FormItemTypeEnum.INPUT ? InputAttributesType :
+        T extends FormItemTypeEnum.TEXTAREA ? TextareaAttributesType :
+        T extends FormItemTypeEnum.DROPDOWN ? DropdownAttributesType :
+        T extends FormItemTypeEnum.CHECKBOXES ? CheckboxesAttributesType :
+        MarkdownAttributesType;
     validations?: ValidationsType;
 }
 
@@ -69,7 +70,7 @@ export interface FormInfoType {
     assignees?: string | string[];
     labels?: string | string[];
     title?: string;
-    body?: FormItemType[];
+    body?: FormItemType<FormItemTypeEnum>[];
 }
 
 export interface FormDataType {
@@ -81,7 +82,7 @@ export const getFormItemAndData = (formInfo: FormInfoType) => {
     const {body, ...other} = formInfo;
 
     if(!body) {
-        return [{body, ...other}, {}, {}]
+        return [{body, ...other}, {}, {}] as [FormInfoType, FormRules, FormDataType]
     }
 
     const [rules, data] = body.reduce<[FormRules, FormDataType]>((pre, {type, id, attributes, validations}, index, arr)=> {
@@ -127,7 +128,7 @@ export const getFormItemAndData = (formInfo: FormInfoType) => {
                 validator,
             }] as FormItemRule };
         }
-        return [rules, data];
+        return [{...rules}, data];
     }, [{}, {}])
-    return [{body, ...other}, rules , data];
+    return [{body, ...other}, rules , data] as [FormInfoType, FormRules, FormDataType];
 }

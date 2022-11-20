@@ -9,7 +9,7 @@
       </el-col>
       <el-col :span="2" class="h-full flex items-center justify-end">
         <a href="#" class="color-white">
-          <div class="i-carbon-logo-github pl-.5 color-white text-size-8" />
+          <div class="i-simple-icons-github pl-.5 color-white text-size-8" />
         </a>
       </el-col>
     </el-row>
