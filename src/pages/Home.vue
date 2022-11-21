@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import yaml from "yaml";
 import { ref } from "vue";
+import { ElContainer, ElDialog, ElButton, FormRules, FormInstance } from "element-plus";
+import { useClipboard } from '@vueuse/core'
 
 import Header from "../components/Header.vue";
 import RenderForm from "../components/RenderForm.vue";
 import CondigurationForm from "../components/ConfigurationForm.vue";
 import { FormDataType, FormInfoType, getFormItemAndData } from "../utils/form";
 import { ConfigFormType } from "../utils/configForm";
-import { ElContainer, ElDialog, ElButton, FormRules } from "element-plus";
 import { getConfigFileData } from "../utils/configFileURL";
 
 const featuresContent = [
@@ -30,8 +31,9 @@ const formRules = ref<FormRules>({});
 const formData = ref<FormDataType>({});
 const dialogFormVisible = ref(false);
 
+const { copy, isSupported: isSupportedClipboard } = useClipboard()
+
 const onPreview = async ({ templateURL }: ConfigFormType) => {
-  console.log("templateURL:", templateURL)
   const content = await getConfigFileData(templateURL);
   const formData = yaml.parse(content || '');
   const [thisFormInfo, thisRules, thisData] = getFormItemAndData(formData);
@@ -39,6 +41,41 @@ const onPreview = async ({ templateURL }: ConfigFormType) => {
   formRules.value = thisRules;
   formData.value = thisData;
   dialogFormVisible.value = true;
+}
+
+const verify = async (formRef: FormInstance | undefined) => {
+  let isValid = true;
+  if (formRef) {
+    await formRef.validate((valid) => {
+      if (!valid) isValid = valid;
+    });
+  };
+  return isValid;
+}
+
+const splicingURL = ({ repoOwner, repoName, templateURL, postDestination }: ConfigFormType) => {
+  const { origin } = location;
+  const params = new URLSearchParams({
+    repoOwner,
+    repoName,
+    templateURL,
+    postDestination: postDestination.join(","),
+  }).toString();
+  return `${origin}/about?${params}`;
+}
+
+
+const onVisit = async (configurationFormRef: FormInstance | undefined, configForm: ConfigFormType) => {
+  ;
+  if (!await verify(configurationFormRef)) return;
+  const url = splicingURL(configForm);
+  window?.open(url)
+}
+
+const onCopyLink = async (configurationFormRef: FormInstance | undefined, configForm: ConfigFormType) => {
+  if (!await verify(configurationFormRef)) return;
+  const url = splicingURL(configForm);
+  copy(url);
 }
 
 </script>
@@ -78,7 +115,8 @@ const onPreview = async ({ templateURL }: ConfigFormType) => {
         <h2 class="text-size-3xl text-start">Create your templates now:</h2>
         <p class="text-start">You just need to fill out a form!</p>
 
-        <CondigurationForm @onPreview="onPreview" />
+        <CondigurationForm @preview="onPreview" @visit="onVisit" @copyLink="onCopyLink"
+          :isSupportedClipboard="isSupportedClipboard" />
       </div>
     </main>
   </el-container>

@@ -17,6 +17,7 @@ export interface ConfigFileInfo {
 export const reConfigFileURL = /http[s]?:\/\/(\w+)\.com\/([^\/\s]+)\/([^\/\s]+)\/([^\/\s]+)\/([^\/\s]+)\/([\S]+)/g;
 
 export const execConfigFileURLRegexp = (url: string) => {
+    reConfigFileURL.lastIndex = 0;
     const execResult = reConfigFileURL.exec(url);
     if (!execResult) throw new Error("execResult Error!")
     const [_, platform, owner, repo, type, ref, path] = execResult;
@@ -36,10 +37,8 @@ export const validateConfigFileURL = ({ platform, owner, repo, type, ref, path }
 
 export const fetchConfigFileContent = async ({ platform, owner, repo, ref, path }: ConfigFileInfo): Promise<string> => {
     const URL = ConfigFilePlatformEnum.GITHUB === platform ? `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${ref}` : `https://gitee.com/api/v5/repos/${owner}/${repo}/contents/${path}?ref=${ref}`;
-
     const re = await fetch(URL);
     const { content } = await re.json();
-
     return content;
 }
 
@@ -64,5 +63,3 @@ export const getConfigFileData = async (url: string) => {
     const fileContent = decodeBase64(fileContentBase64);
     return fileContent;
 }
-
-
