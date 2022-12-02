@@ -13,7 +13,7 @@ body:
         ## hi h3!
         **555** 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 jkkkkkkkkk kkkkkkkk kkkkkkkkkkkk lllllllllllllll!
   - type: input
-    id: prevalence
+    id: title
     attributes:
       label: Bug prevalence
       description: "How often do you or others encounter this bug?"

@@ -3,6 +3,7 @@ import { FormInstance, FormRules } from "element-plus";
 import { reactive, ref } from "vue";
 
 import { ConfigFormType } from "../utils/configForm";
+import { resetForm } from "../utils/form";
 
 const { isSupportedClipboard } = defineProps<{
   isSupportedClipboard: boolean;
@@ -23,10 +24,6 @@ const rules = reactive<FormRules>({
   postDestination: [{ type: 'array', required: true, message: 'Please select at least one post destination.', trigger: 'change', },]
 })
 
-const resetForm = (configurationFormRef: FormInstance | undefined) => {
-  if (!configurationFormRef) return;
-  configurationFormRef.resetFields();
-}
 </script>
 
 <template>

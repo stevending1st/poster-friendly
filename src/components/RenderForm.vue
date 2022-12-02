@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { FormRules } from "element-plus";
-import { ref } from "vue";
 
 import { FormInfoType, FormDataType } from '../utils/form';
 
-const { formInfo, rules, data } = defineProps<{
+const { formInfo, data } = defineProps<{
   formInfo: Partial<FormInfoType>,
   rules: FormRules,
   data: FormDataType,
 }>()
 const { name, labels, title, description, assignees, body } = formInfo;
-const formData = ref(data)
 </script>
 
 <template>
@@ -19,19 +17,12 @@ const formData = ref(data)
       <h2 class="w-full">{{ name }}</h2>
       <p class="w-full">{{ description }}</p>
     </div>
-    <div class="flex py-5">
-      <el-form class="w-full" :model="formData" :rules="rules" size="large" label-position="top">
-        <el-form-item class="mt-6 mb-10!" label="Title" :required="true">
-          <el-input :placeholder="title" />
-          <p class="text-sm text-gray-500 mt-1.5" v-if="description">
-            {{ description }}
-          </p>
-        </el-form-item>
+    <div class="py-5 w-full">
+      <slot name="title"></slot>
 
-        <template fill v-if="body" v-for="(formItem, index) in body" :key="index">
-          <FormItems :formItem="formItem" :data="data" />
-        </template>
-      </el-form>
+      <template fill v-if="body" v-for="(formItem, index) in body" :key="index">
+        <FormItems :formItem="formItem" :data="data" />
+      </template>
     </div>
   </div>
 </template>

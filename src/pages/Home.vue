@@ -6,8 +6,9 @@ import { useClipboard } from '@vueuse/core'
 
 import Header from "../components/Header.vue";
 import RenderForm from "../components/RenderForm.vue";
+import Form from "../components/Form.vue";
 import CondigurationForm from "../components/ConfigurationForm.vue";
-import { FormDataType, FormInfoType, getFormItemAndData } from "../utils/form";
+import { FormDataType, FormInfoType, verify, getFormItemAndData } from "../utils/form";
 import { ConfigFormType } from "../utils/configForm";
 import { getConfigFileData } from "../utils/configFileURL";
 
@@ -43,30 +44,18 @@ const onPreview = async ({ templateURL }: ConfigFormType) => {
   dialogFormVisible.value = true;
 }
 
-const verify = async (formRef: FormInstance | undefined) => {
-  let isValid = true;
-  if (formRef) {
-    await formRef.validate((valid) => {
-      if (!valid) isValid = valid;
-    });
-  };
-  return isValid;
-}
-
 const splicingURL = ({ repoOwner, repoName, templateURL, postDestination }: ConfigFormType) => {
   const { origin } = location;
   const params = new URLSearchParams({
-    repoOwner,
-    repoName,
+    owner: repoOwner,
+    name: repoName,
     templateURL,
     postDestination: postDestination.join(","),
   }).toString();
-  return `${origin}/about?${params}`;
+  return `${origin}/poster?${params}`;
 }
 
-
 const onVisit = async (configurationFormRef: FormInstance | undefined, configForm: ConfigFormType) => {
-  ;
   if (!await verify(configurationFormRef)) return;
   const url = splicingURL(configForm);
   window?.open(url)
@@ -123,7 +112,15 @@ const onCopyLink = async (configurationFormRef: FormInstance | undefined, config
   <el-dialog v-model="dialogFormVisible" title="Template Preview" fullscreen align-center="true" center>
     <div class="flex justify-center">
       <div class=" w-full sm:w-85% md:w-50%">
-        <RenderForm :formInfo="formInfo" :rules="formRules" :data="formData" />
+        <el-form :model="formData" :rules="formRules" size="large" label-position="top">
+          <RenderForm :formInfo="formInfo" :rules="formRules" :data="formData">
+            <template v-slot:title>
+              <el-form-item class="mt-6 mb-10!" label="Title" required prop="title">
+                <el-input v-model="formData.title" />
+              </el-form-item>
+            </template>
+          </RenderForm>
+        </el-form>
       </div>
     </div>
     <template #footer>
