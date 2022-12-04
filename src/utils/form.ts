@@ -100,6 +100,13 @@ export const resetForm = (formRef: FormInstance | undefined) => {
     formRef.resetFields();
 }
 
+const checkboxCheckInfo = {
+    type: 'enum',
+    enum: [true],
+    message: 'This is required.',
+    trigger: 'change',
+}
+
 export const getFormItemAndData = (formInfo: FormInfoType) => {
     const markdownIt = new MarkdownIt();
     const { body, ...other } = formInfo;
@@ -125,12 +132,13 @@ export const getFormItemAndData = (formInfo: FormInfoType) => {
         } else if (type === FormItemTypeEnum.DROPDOWN) {
             data = { ...data, [key]: (attributes as DropdownAttributesType).multiple ? '' : [] };
         } else if (type === FormItemTypeEnum.CHECKBOXES) {
-            data = { ...data, [key]: [] };
+            data = { ...data, [key]: Array((arr[index].attributes as CheckboxesAttributesType).options.length).fill(false) };
         }
         // rules
         if (type !== FormItemTypeEnum.CHECKBOXES && validations?.required) {
             rules = {
-                ...rules, [key]: [{
+                ...(rules as FormRules),
+                [key]: [{
                     type: type === FormItemTypeEnum.DROPDOWN ? 'array' : 'string',
                     required: true,
                     message: 'This is required.',
@@ -140,22 +148,19 @@ export const getFormItemAndData = (formInfo: FormInfoType) => {
             }
         }
         if (type === FormItemTypeEnum.CHECKBOXES) {
-            const requiredItemsArr = (attributes as CheckboxesAttributesType).options.filter(({ required }) => !!required).map(({ label }) => label);
-            const message = "You should select:" + requiredItemsArr.map(items => markdownIt.render(items)).join("");
-            const validator = requiredItemsArr.length <= 0 ? undefined : (rule: FormItemRule, value: string[]) => {
-                const hasWrongFields = requiredItemsArr.length > value.length || requiredItemsArr.some(items => !value.includes(items));
-                if (hasWrongFields) {
-                    return new Error();
+            const checkboxCheckFields = (attributes as CheckboxesAttributesType).options.reduce((preFields, { required},index) => {
+                if(required) {
+                    return {...preFields, [index]: checkboxCheckInfo}
+                } else{
+                    return preFields;
                 }
-            }
+            }, {})
             rules = {
-                ...rules, [key]: [{
+                ...(rules as FormRules),
+                [key]: {
                     type: 'array',
-                    required: requiredItemsArr.length > 0,
-                    message,
-                    trigger: 'change',
-                    validator,
-                }] as FormItemRule
+                    ...checkboxCheckFields
+                } as FormItemRule
             };
         }
         return [{ ...rules }, data];
