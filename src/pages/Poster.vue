@@ -9,7 +9,7 @@ import Form from "../components/Form.vue";
 import { ymldata } from '../test/fromdata';
 import { getConfigFileData } from '../utils/configFileURL';
 import { PostDestinationEnum } from "../utils/platform";
-import { generatePostData } from '../utils/postData';
+import { generateBodyData, generateGiteeIssueURL, generateGitHubDiscussionURL, generateGitHubIssueURL } from '../utils/postData';
 import { FormDataType, FormInfoType, verify, getFormItemAndData } from '../utils/form';
 import CreateButton from '../components/CreateButton.vue';
 
@@ -19,7 +19,7 @@ const rules = ref<FormRules>({});
 const data = ref<FormDataType>({});
 
 const { query } = useRoute();
-const { postDestination, owner, name, templateURL } = query;
+const { postDestination, owner, name, templateURL, category, labels,assignees } = query;
 
 const getyaml = async () => {
   loading.value = true;
@@ -47,7 +47,20 @@ const formRef = ref<FormInstance>();
 const post = async ( postDestination: PostDestinationEnum, info: FormInfoType, data: any, ref: FormInstance | undefined)  => {
   if (!await verify(ref)) return;
   const title = data.title;
-  const bodyText = generatePostData(info, data);
+  const body = generateBodyData(info, data);
+  const postMeta = {
+    owner: owner as string,
+    name: name as string,
+    title,
+    body,
+    labels: labels as string,
+    assignees: assignees as string,
+    category: category as string,
+  }
+  console.log("postMeta:", postMeta, postDestination == PostDestinationEnum.GITEE_ISSUE, postDestination == PostDestinationEnum.GITHUB_ISSUE)
+  const url = (postDestination === PostDestinationEnum.GITHUB_ISSUE ? generateGitHubIssueURL : postDestination === PostDestinationEnum.GITHUB_DISCUSSION ? generateGitHubDiscussionURL : generateGiteeIssueURL)(postMeta)
+  console.log("url:", url)
+  window.open(url);
 }
 
 console.log(query, postDestination, owner, name, templateURL);

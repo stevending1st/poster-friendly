@@ -63,7 +63,11 @@ const markdownIt = new MarkdownIt();
           :prop="`[${formItem.id}][${index}]`" :key="item.label">
           <div class="flex align-content-center">
             <el-checkbox :label="item.label" v-model="data[formItem.id!][index]" />
-            <div class="markdown-body github-markdown-render pl-1 mt-6 mb-1.5!"
+            <p class="w-8px!">
+              <div class='i-carbon-asterisk color-#f56c6c mt-1 text-2 font-600' v-if="item.required" />
+              <div class='mt-1 ml-3 text-2' v-else />
+            </p>
+            <div class="markdown-body github-markdown-render pl-1"
               v-html="markdownIt.render(item.label)" />
           </div>
         </el-form-item>
@@ -76,6 +80,7 @@ const markdownIt = new MarkdownIt();
 :deep(.el-form-item__error) {
   position: relative;
   display: block;
+  margin-bottom: 1rem;
 }
 
 :deep(.el-checkbox__label) {
