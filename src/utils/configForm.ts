@@ -1,8 +1,8 @@
-import { PostDestinationEnum } from "./platform";
+import { PostDestinationEnum } from './platform';
 
 export interface ConfigFormType {
-    repoOwner: string;
-    repoName: string;
-    templateURL: string;
-    postDestination: PostDestinationEnum[];
+  repoOwner: string;
+  repoName: string;
+  templateURL: string;
+  postDestination: PostDestinationEnum[];
 }

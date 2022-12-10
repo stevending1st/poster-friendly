@@ -1,6 +1,5 @@
-import yaml from "yaml";
+import yaml from 'yaml';
 
-import { ymldata } from "../test/fromdata";
+import { ymldata } from '../test/fromdata';
 
-
-export const test = () => yaml.parse(ymldata)
+export const test = () => yaml.parse(ymldata);

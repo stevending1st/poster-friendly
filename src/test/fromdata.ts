@@ -70,4 +70,4 @@ body:
       placeholder: "Whenever I visit the user account page (1-2 times a week)"
       value: input value
     validations:
-      required: true`
+      required: true`;
