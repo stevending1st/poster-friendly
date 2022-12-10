@@ -62,11 +62,11 @@ const markdownIt = new MarkdownIt();
         <el-form-item v-for="item, index in (formItem.attributes as CheckboxesAttributesType).options"
           :prop="`[${formItem.id}][${index}]`" :key="item.label">
           <div class="flex align-content-center">
-            <el-checkbox :label="item.label" v-model="data[formItem.id!][index]" />
-            <p class="w-8px!">
+            <el-checkbox :label="item.label" v-model="(data[formItem.id as string] as string[])[index]" />
+            <div class="w-8px!">
               <div class='i-carbon-asterisk color-#f56c6c mt-1 text-2 font-600' v-if="item.required" />
               <div class='mt-1 ml-3 text-2' v-else />
-            </p>
+            </div>
             <div class="markdown-body github-markdown-render pl-1"
               v-html="markdownIt.render(item.label)" />
           </div>

@@ -4,13 +4,11 @@ import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import yaml from "yaml";
 
-import RenderForm from "../components/RenderForm.vue";
 import { ymldata } from '../test/fromdata';
 import { getConfigFileData } from '../utils/configFileURL';
 import { PostDestinationEnum } from "../utils/platform";
 import { generateBodyData, generateGiteeIssueURL, generateGitHubDiscussionURL, generateGitHubIssueURL } from '../utils/postData';
 import { FormDataType, FormInfoType, verify, getFormItemAndData } from '../utils/form';
-import CreateButton from '../components/CreateButton.vue';
 
 const loading = ref<boolean>(false);
 const info = ref<FormInfoType>({ name: "", description: "" });
@@ -46,9 +44,9 @@ const formRef = ref<FormInstance>();
 const isPreview = ref(false);
 const body = ref<string>('');
 
-const post = async ( postDestination: PostDestinationEnum, info: FormInfoType, data: any, ref: FormInstance | undefined)  => {
+const post = async ( postDestination: PostDestinationEnum, info: FormInfoType, data: FormDataType, ref: FormInstance | undefined)  => {
   if (!await verify(ref)) return;
-  const title = data.title;
+  const title = data.title as string;
   const postMeta = {
     owner: owner as string,
     name: name as string,
@@ -98,10 +96,10 @@ const preview = async(ref: FormInstance | undefined) => {
     </div>
   </div>
   <el-dialog title="Preview" v-model="isPreview">
-    <Preview :body="body" :title="data.title"/>
+    <preview-com :body="body" :title="data.title"/>
     <el-row>
-      <el-col class="mb-3" v-for="items of btnArr">
-        <CreateButton :postDestination="items" @create="post(items, info, data, formRef)" />
+      <el-col class="mb-3" v-for="items of btnArr" :key="items">
+        <create-button :postDestination="items" @create="post(items, info, data, formRef)" />
       </el-col>
     </el-row>
   </el-dialog>

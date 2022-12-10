@@ -14,13 +14,13 @@ export interface ConfigFileInfo {
     path: string;
 }
 
-export const reConfigFileURL = /http[s]?:\/\/(\w+)\.com\/([^\/\s]+)\/([^\/\s]+)\/([^\/\s]+)\/([^\/\s]+)\/([\S]+)/g;
+export const reConfigFileURL = /http[s]?:\/\/(\w+)\.com\/([^/\s]+)\/([^/\s]+)\/([^/\s]+)\/([^/\s]+)\/([\S]+)/g;
 
 export const execConfigFileURLRegexp = (url: string) => {
     reConfigFileURL.lastIndex = 0;
     const execResult = reConfigFileURL.exec(url);
     if (!execResult) throw new Error("execResult Error!")
-    const [_, platform, owner, repo, type, ref, path] = execResult;
+    const [, platform, owner, repo, type, ref, path] = execResult;
     return { platform, owner, repo, type, ref, path }
 }
 
@@ -47,7 +47,7 @@ export const decodeBase64 = (base64str: string) => {
         const regex = /\\\\n/ig;
         const str = base64str.replace(regex, '\n')
         return Buffer.from(str, 'base64').toString('utf-8');
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("error:", error)
     }
 }
@@ -56,7 +56,7 @@ export const getConfigFileData = async (url: string) => {
     const configFileURLInfo = execConfigFileURLRegexp(url);
     try {
         validateConfigFileURL(configFileURLInfo)
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("getConfigFileData Err:", getConfigFileData);
     }
     const fileContentBase64 = await fetchConfigFileContent(configFileURLInfo);

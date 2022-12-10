@@ -8,7 +8,7 @@ const { formInfo, data } = defineProps<{
   rules: FormRules,
   data: FormDataType,
 }>()
-const { name, labels, title, description, assignees, body } = formInfo;
+const { name, description, body } = formInfo;
 </script>
 
 <template>
@@ -20,8 +20,10 @@ const { name, labels, title, description, assignees, body } = formInfo;
     <div class="py-5 w-full">
       <slot name="title"></slot>
 
-      <template fill v-if="body" v-for="(formItem, index) in body" :key="index">
-        <FormItems :formItem="formItem" :data="data" />
+      <template v-if="body">
+        <div fill v-for="(formItem, index) in body" :key="index">
+          <form-items :formItem="formItem" :data="data" />
+        </div>
       </template>
     </div>
   </div>

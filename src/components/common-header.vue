@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <el-header class="w-full bg-black row-bg color-white">
     <el-row class="row-bg h-full" justify="space-between">
@@ -15,7 +12,3 @@
     </el-row>
   </el-header>
 </template>
-
-<style scoped>
-
-</style>

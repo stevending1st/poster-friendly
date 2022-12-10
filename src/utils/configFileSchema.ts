@@ -1,7 +1,3 @@
-import { JSONSchemaType } from "ajv";
-
-import { FormInfoType } from "./form";
-
 export const configFileSchema = {
     type: "object",
     properties: {

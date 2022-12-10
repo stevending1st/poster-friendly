@@ -1,4 +1,4 @@
-import { CheckboxesAttributesType, DropdownAttributesType, FormInfoType, FormItemTypeEnum, InputAttributesType, TextareaAttributesType } from "./form";
+import { CheckboxesAttributesType, DropdownAttributesType, FormDataType, FormInfoType, FormItemTypeEnum, InputAttributesType, TextareaAttributesType } from "./form";
 
 export interface PostMeta {
     owner: string;
@@ -26,11 +26,11 @@ export const generateCheckboxesString = ({ label, options }: CheckboxesAttribute
     return `### ${label}\n${content}\n\n`;
 }
 
-export const generateBodyData = (info: FormInfoType, data: any) => {
+export const generateBodyData = (info: FormInfoType, data: FormDataType) => {
     const { body } = info;
     if (!body) return '';
     return body.reduce((pre, { type, id, attributes }) =>{
-       return  pre += type === FormItemTypeEnum.INPUT ? generateInputString(attributes as InputAttributesType, data[id!]) : type === FormItemTypeEnum.TEXTAREA ? generateTextareaString(attributes as TextareaAttributesType, data[id!]) : type === FormItemTypeEnum.DROPDOWN ? generateDropdownString(attributes as DropdownAttributesType, data[id!]) : type === FormItemTypeEnum.CHECKBOXES ? generateCheckboxesString(attributes as CheckboxesAttributesType, data[id!]) : ''
+       return  pre += type === FormItemTypeEnum.INPUT ? generateInputString(attributes as InputAttributesType, data[id ?? ''] as string) : type === FormItemTypeEnum.TEXTAREA ? generateTextareaString(attributes as TextareaAttributesType, data[id ?? ''] as string) : type === FormItemTypeEnum.DROPDOWN ? generateDropdownString(attributes as DropdownAttributesType, data[id ?? ''] as string | string[]) : type === FormItemTypeEnum.CHECKBOXES ? generateCheckboxesString(attributes as CheckboxesAttributesType, data[id ?? ''] as string[]) : ''
     }, '');
 }
 
@@ -40,8 +40,8 @@ export const generateGitHubIssueURL = ({owner, name, title, body, labels, assign
     return `https://github.com/${owner}/${name}/issues/new?` + (new URLSearchParams({
         title,
         body,
-        ...(!!labelsString ? {labels: labelsString} : {}),
-        ...(!!assigneesString ? {assignees: assigneesString} : {}),
+        ...(labelsString ? {labels: labelsString} : {}),
+        ...(assigneesString ? {assignees: assigneesString} : {}),
     })).toString();
 }
 
@@ -50,8 +50,8 @@ export const generateGitHubDiscussionURL = ({owner, name, title, body, labels, c
     return `https://github.com/${owner}/${name}/discussions/new?` + (new URLSearchParams({
         title,
         body,
-        ...(!!labelsString ? {labels: labelsString} : {}),
-        ...(!!category ? {category} : {})
+        ...(labelsString ? {labels: labelsString} : {}),
+        ...(category ? {category} : {})
     })).toString();
 }
 

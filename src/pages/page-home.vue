@@ -4,10 +4,7 @@ import { ref } from "vue";
 import { ElContainer, ElDialog, ElButton, FormRules, FormInstance } from "element-plus";
 import { useClipboard } from '@vueuse/core'
 
-import Header from "../components/Header.vue";
-import RenderForm from "../components/RenderForm.vue";
-import Form from "../components/Form.vue";
-import CondigurationForm from "../components/ConfigurationForm.vue";
+import RenderForm from "../components/render-form.vue";
 import { FormDataType, FormInfoType, verify, getFormItemAndData } from "../utils/form";
 import { ConfigFormType } from "../utils/configForm";
 import { getConfigFileData } from "../utils/configFileURL";
@@ -71,7 +68,7 @@ const onCopyLink = async (configurationFormRef: FormInstance | undefined, config
 
 <template>
   <el-container class="w-full" direction="vertical">
-    <Header />
+    <common-header />
     <main class="p-0">
       <div class="bg-blue h-50 py-20">
         <h2 class="text-size-5xl text-center mb-5">
@@ -104,7 +101,7 @@ const onCopyLink = async (configurationFormRef: FormInstance | undefined, config
         <h2 class="text-size-3xl text-start">Create your templates now:</h2>
         <p class="text-start">You just need to fill out a form!</p>
 
-        <CondigurationForm @preview="onPreview" @visit="onVisit" @copyLink="onCopyLink"
+        <configuration-form @preview="onPreview" @visit="onVisit" @copyLink="onCopyLink"
           :isSupportedClipboard="isSupportedClipboard" />
       </div>
     </main>
@@ -134,6 +131,5 @@ const onCopyLink = async (configurationFormRef: FormInstance | undefined, config
 <style scoped>
 .el-dialog__body {
   display: flex !important;
-  /* items-center: center; */
 }
 </style>

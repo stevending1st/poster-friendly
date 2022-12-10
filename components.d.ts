@@ -7,8 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ConfigurationForm: typeof import('./src/components/ConfigurationForm.vue')['default']
-    CreateButton: typeof import('./src/components/CreateButton.vue')['default']
+    CommonHeader: typeof import('./src/components/common-header.vue')['default']
+    ConfigurationForm: typeof import('./src/components/configuration-form.vue')['default']
+    CreateButton: typeof import('./src/components/create-button.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
@@ -28,10 +29,12 @@ declare module '@vue/runtime-core' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSpace: typeof import('element-plus/es')['ElSpace']
     Form: typeof import('./src/components/Form.vue')['default']
-    FormItems: typeof import('./src/components/FormItems.vue')['default']
-    Header: typeof import('./src/components/Header.vue')['default']
-    Preview: typeof import('./src/components/Preview.vue')['default']
-    RenderForm: typeof import('./src/components/RenderForm.vue')['default']
+    FormItems: typeof import('./src/components/form-items.vue')['default']
+    header: typeof import('./src/components/header.vue')['default']
+    Header: typeof import('./src/components/header.vue')['default']
+    Preview: typeof import('./src/components/preview.vue')['default']
+    PreviewCom: typeof import('./src/components/preview-com.vue')['default']
+    RenderForm: typeof import('./src/components/render-form.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

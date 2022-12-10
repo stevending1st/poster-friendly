@@ -59,19 +59,19 @@ const rules = reactive<FormRules>({
         <el-form-item label="Post destination" prop="postDestination">
           <el-checkbox-group size="large" placeholder="5555" v-model="configForm.postDestination">
             <el-checkbox label="GitHub_issue" name="type" size="large">
-              <p class="flex">
+              <div class="flex">
                 <div class="i-simple-icons-github mr-2" />GitHub Issue
-              </p>
+              </div>
             </el-checkbox>
             <el-checkbox label="GitHub_discussion" name="type" size="large">
-              <p class="flex">
+              <div class="flex">
                 <div class="i-simple-icons-github mr-2" />GitHub Discussion
-              </p>
+              </div>
             </el-checkbox>
             <el-checkbox label="Gitee_issue" name="type" size="large">
-              <p class="flex">
+              <div class="flex">
                 <div class="i-simple-icons-gitee mr-2" />Gitee Issue
-              </p>
+              </div>
             </el-checkbox>
           </el-checkbox-group>
         </el-form-item>

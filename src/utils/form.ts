@@ -1,5 +1,4 @@
 import { FormInstance, FormItemRule, FormRules } from 'element-plus';
-import MarkdownIt from 'markdown-it';
 import { v4 as uuidv4 } from 'uuid';
 
 export enum FormItemTypeEnum {
@@ -74,7 +73,7 @@ export interface FormInfoType {
 }
 
 export interface FormDataType {
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 const titleRule = {
@@ -91,7 +90,7 @@ export const verify = async (formRef: FormInstance | undefined) => {
         await formRef.validate((valid) => {
             if (!valid) isValid = valid;
         });
-    };
+    }
     return isValid;
 }
 
@@ -108,7 +107,6 @@ const checkboxCheckInfo = {
 }
 
 export const getFormItemAndData = (formInfo: FormInfoType) => {
-    const markdownIt = new MarkdownIt();
     const { body, ...other } = formInfo;
 
     if (!body) {
@@ -124,7 +122,7 @@ export const getFormItemAndData = (formInfo: FormInfoType) => {
             const uuid = uuidv4();
             arr[index].id = uuid;
         }
-        const key = arr[index].id!;
+        const key = arr[index].id ?? '';
         let [rules, data] = pre;
         // data
         if (type === FormItemTypeEnum.INPUT || type === FormItemTypeEnum.TEXTAREA) {

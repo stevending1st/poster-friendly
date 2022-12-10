@@ -15,7 +15,3 @@ const converter = new showdown.Converter();
   <h1 v-if="!!title">{{title}}</h1>
   <div class="mb-5" v-html="converter.makeHtml(body)" />
 </template>
-
-<style scoped>
-
-</style>
