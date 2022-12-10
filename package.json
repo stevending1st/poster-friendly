@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "prettier": "prettier --write ./src",
-    "test": "lint-staged  &&  npm run lint"
+    "test": "lint-staged  &&  npm run lint",
+    "rm:dist": "rimraf dist"
   },
   "dependencies": {
     "@vueuse/core": "^9.5.0",
@@ -44,6 +45,7 @@
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.6.4",
     "unocss": "^0.46.5",
     "unplugin-auto-import": "^0.11.4",

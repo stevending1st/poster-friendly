@@ -25,6 +25,7 @@ specifiers:
   lint-staged: ^13.1.0
   markdown-it: ^13.0.1
   prettier: ^2.8.1
+  rimraf: ^3.0.2
   showdown: ^2.1.0
   typescript: ^4.6.4
   unocss: ^0.46.5
@@ -69,6 +70,7 @@ devDependencies:
   husky: 8.0.2
   lint-staged: 13.1.0
   prettier: 2.8.1
+  rimraf: 3.0.2
   typescript: 4.8.4
   unocss: 0.46.5_vite@3.2.3
   unplugin-auto-import: 0.11.4_@vueuse+core@9.5.0
