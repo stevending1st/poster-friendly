@@ -5,7 +5,6 @@ import { useRoute } from 'vue-router';
 import yaml from "yaml";
 
 import RenderForm from "../components/RenderForm.vue";
-import Form from "../components/Form.vue";
 import { ymldata } from '../test/fromdata';
 import { getConfigFileData } from '../utils/configFileURL';
 import { PostDestinationEnum } from "../utils/platform";
@@ -44,27 +43,31 @@ watchEffect(getyaml);
 
 const formRef = ref<FormInstance>();
 
+const isPreview = ref(false);
+const body = ref<string>('');
+
 const post = async ( postDestination: PostDestinationEnum, info: FormInfoType, data: any, ref: FormInstance | undefined)  => {
   if (!await verify(ref)) return;
   const title = data.title;
-  const body = generateBodyData(info, data);
   const postMeta = {
     owner: owner as string,
     name: name as string,
     title,
-    body,
+    body: body.value,
     labels: labels as string,
     assignees: assignees as string,
     category: category as string,
   }
   console.log("postMeta:", postMeta, postDestination == PostDestinationEnum.GITEE_ISSUE, postDestination == PostDestinationEnum.GITHUB_ISSUE)
   const url = (postDestination === PostDestinationEnum.GITHUB_ISSUE ? generateGitHubIssueURL : postDestination === PostDestinationEnum.GITHUB_DISCUSSION ? generateGitHubDiscussionURL : generateGiteeIssueURL)(postMeta)
-  console.log("url:", url)
   window.open(url);
 }
 
-console.log(query, postDestination, owner, name, templateURL);
-console.log("****>", info, rules, data);
+const preview = async(ref: FormInstance | undefined) => {
+  if (!await verify(ref)) return;
+  body.value = generateBodyData(info.value, data.value)
+  isPreview.value = true;
+}
 </script>
 
 <template>
@@ -83,17 +86,26 @@ console.log("****>", info, rules, data);
             </el-form-item>
           </template>
         </RenderForm>
-
         <el-row>
-          <el-col class="mb-3" v-for="items of btnArr">
-            <CreateButton :postDestination="items" @create="post(items, info, data, formRef)" />
+          <el-col class="mb-3">
+            <el-button type="primary" size="large" class="w-full" round @Click="preview(formRef)">
+              <div :class="`i-carbon-view mr-2`" />
+              Preview
+            </el-button>
           </el-col>
         </el-row>
       </el-form>
     </div>
   </div>
+  <el-dialog title="Preview" v-model="isPreview">
+    <Preview :body="body" :title="data.title"/>
+    <el-row>
+      <el-col class="mb-3" v-for="items of btnArr">
+        <CreateButton :postDestination="items" @create="post(items, info, data, formRef)" />
+      </el-col>
+    </el-row>
+  </el-dialog>
 </template>
 
 <style scoped>
-
 </style>

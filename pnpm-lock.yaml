@@ -5,6 +5,7 @@ specifiers:
   '@iconify-json/simple-icons': ^1.1.34
   '@types/markdown-it': ^12.2.3
   '@types/node': ^18.11.9
+  '@types/showdown': ^2.0.0
   '@types/uuid': ^8.3.4
   '@unocss/preset-attributify': ^0.46.5
   '@unocss/preset-icons': ^0.46.5
@@ -17,6 +18,7 @@ specifiers:
   element-plus: ^2.2.21
   github-markdown-css: ^5.1.0
   markdown-it: ^13.0.1
+  showdown: ^2.1.0
   typescript: ^4.6.4
   unocss: ^0.46.5
   unplugin-auto-import: ^0.11.4
@@ -35,6 +37,7 @@ dependencies:
   element-plus: 2.2.21_vue@3.2.45
   github-markdown-css: 5.1.0
   markdown-it: 13.0.1
+  showdown: 2.1.0
   uuid: 9.0.0
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -45,6 +48,7 @@ devDependencies:
   '@iconify-json/simple-icons': 1.1.34
   '@types/markdown-it': 12.2.3
   '@types/node': 18.11.9
+  '@types/showdown': 2.0.0
   '@types/uuid': 8.3.4
   '@unocss/preset-attributify': 0.46.5
   '@unocss/preset-icons': 0.46.5
@@ -279,6 +283,10 @@ packages:
 
   /@types/node/18.11.9:
     resolution: {integrity: sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==}
+    dev: true
+
+  /@types/showdown/2.0.0:
+    resolution: {integrity: sha512-70xBJoLv+oXjB5PhtA8vo7erjLDp9/qqI63SRHm4REKrwuPOLs8HhXwlZJBJaB4kC18cCZ1UUZ6Fb/PLFW4TCA==}
     dev: true
 
   /@types/uuid/8.3.4:
@@ -691,6 +699,11 @@ packages:
   /colorette/2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
     dev: true
+
+  /commander/9.4.1:
+    resolution: {integrity: sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==}
+    engines: {node: ^12.20.0 || >=14}
+    dev: false
 
   /consola/2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
@@ -1452,6 +1465,13 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
     dev: true
+
+  /showdown/2.1.0:
+    resolution: {integrity: sha512-/6NVYu4U819R2pUIk79n67SYgJHWCce0a5xTP979WbNp0FL9MN1I1QK662IDU1b6JzKTvmhgI7T7JYIxBi3kMQ==}
+    hasBin: true
+    dependencies:
+      commander: 9.4.1
+    dev: false
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}

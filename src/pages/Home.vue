@@ -109,7 +109,7 @@ const onCopyLink = async (configurationFormRef: FormInstance | undefined, config
       </div>
     </main>
   </el-container>
-  <el-dialog v-model="dialogFormVisible" title="Template Preview" fullscreen align-center="true" center>
+  <el-dialog v-model="dialogFormVisible" title="Template Preview" fullscreen align-center center>
     <div class="flex justify-center">
       <div class=" w-full sm:w-85% md:w-50%">
         <el-form :model="formData" :rules="formRules" size="large" label-position="top">
