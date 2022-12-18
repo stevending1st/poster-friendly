@@ -17,7 +17,7 @@ export default {
   ssr: { noExternal: ['element-plus'] },
   plugins: [
     Components({
-      dirs: ['.vitepress/components'],
+      dirs: ['.vitepress/components', '.vitepress/pages'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [ElementPlusResolver()],
     }),

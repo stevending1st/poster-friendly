@@ -21,9 +21,14 @@ const { name, description, body } = formInfo;
       <slot name="title"></slot>
 
       <template v-if="body">
-        <div fill v-for="(formItem, index) in body" :key="index">
-          <form-items :formItem="formItem" :data="data" />
-        </div>
+        <!-- <div fill > -->
+        <form-items
+          v-for="(formItem, index) in body"
+          :key="index"
+          :formItem="formItem"
+          :data="data"
+        />
+        <!-- </div> -->
       </template>
     </div>
   </div>

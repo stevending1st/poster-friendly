@@ -20,21 +20,6 @@ import {
 import { ConfigFormType } from '../utils/configForm';
 import { getConfigFileData } from '../utils/configFileURL';
 
-const featuresContent = [
-  {
-    icon: 'i-carbon-flash',
-    text: 'Quickly create Issue and Discussion templates and render them on the web.',
-  },
-  {
-    icon: 'i-carbon-friendship',
-    text: 'Create Issues and Discussions by filling out forms, which is user-friendly.',
-  },
-  {
-    icon: 'i-carbon-copy-file',
-    text: 'More templates are available to make it easier to create Issue and Discussion templates.',
-  },
-];
-
 const workInProgressContent = [
   {
     icon: 'i-carbon-tablet-landscape',
@@ -55,8 +40,8 @@ const { copy, isSupported: isSupportedClipboard } = useClipboard();
 
 const onPreview = async ({ templateURL }: ConfigFormType) => {
   const content = await getConfigFileData(templateURL);
-  const formData = yaml.parse(content || '');
-  const [thisFormInfo, thisRules, thisData] = getFormItemAndData(formData);
+  const yamlData = yaml.parse(content || '');
+  const [thisFormInfo, thisRules, thisData] = getFormItemAndData(yamlData);
   formInfo.value = thisFormInfo;
   formRules.value = thisRules;
   formData.value = thisData;
@@ -100,47 +85,9 @@ const onCopyLink = async (
 
 <template>
   <el-container class="w-full" direction="vertical">
-    <common-header />
     <main class="p-0">
-      <div class="bg-orange color-white h-50 py-20">
-        <h2 class="text-size-5xl text-center mb-5">Poster Friendly</h2>
-        <p class="text-center text-size-20px pb-10 my-0">
-          A complete solution for GitHub (Gitee) Issue and Discussion templates.
-        </p>
-        <p class="text-center pb-8">
-          <a
-            class="bg-#FEFEFE color-black px-5 py-3 rd font-600 text-decoration-none"
-            link
-            href="#config-form"
-            >Get Started</a
-          >
-        </p>
-      </div>
-
       <div
-        class="bg-#fefefe py-20 block px-10px xs:px-20px sm:px-30px md:flex md:flex-col md:items-center"
-        id="features"
-      >
-        <h2 class="text-size-3xl text-start">Poster Friendly will help you:</h2>
-
-        <ul class="list-none pl-0">
-          <li
-            class="flex items-center mb-10"
-            v-for="(featuresItems, index) in featuresContent"
-            :key="index"
-          >
-            <div :class="`${featuresItems.icon} text-size-8 mr-2`" />
-            <div class="flex-1">
-              <p class="text-size-2xl p-0 m-0">
-                {{ featuresItems.text }}
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div
-        class="bg-#d1e4e3 flex flex-col items-center px-30px sm:px-40px py-20"
+        class="flex flex-col items-center px-30px sm:px-40px py-20"
         id="config-form"
       >
         <h2 class="text-size-3xl text-start">Create your templates now:</h2>
@@ -155,10 +102,10 @@ const onCopyLink = async (
       </div>
 
       <div
-        class="bg-#fefefe py-20 block px-10px xs:px-20px sm:px-30px md:flex md:flex-col md:items-center"
+        class="py-3 block px-10px xs:px-20px sm:px-30px md:flex md:flex-col md:items-center"
         id="work-in-progress"
       >
-        <h2 class="text-size-3xl text-start">🚧 Work in progress</h2>
+        <h2 class="text-size-3xl text-start mb-3">🚧 Work in progress</h2>
 
         <ul class="list-none pl-0">
           <li

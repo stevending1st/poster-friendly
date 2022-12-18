@@ -16,6 +16,7 @@ const { formItem, data } = defineProps<{
   data: FormDataType;
 }>();
 const markdownIt = new MarkdownIt();
+console.log('data>>>>', data);
 </script>
 
 <template>
