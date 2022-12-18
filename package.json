@@ -11,7 +11,10 @@
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "prettier": "prettier --write ./src",
     "test": "lint-staged  &&  npm run lint",
-    "rm:dist": "rimraf dist"
+    "rm:dist": "rimraf dist",
+    "docs:dev": "vitepress dev website",
+    "docs:build": "vitepress build website",
+    "docs:preview": "vitepress preview website"
   },
   "dependencies": {
     "@vueuse/core": "^9.5.0",
@@ -51,7 +54,13 @@
     "unplugin-auto-import": "^0.11.4",
     "unplugin-vue-components": "^0.22.9",
     "vite": "^3.2.3",
+    "vitepress": "1.0.0-alpha.32",
     "vue-tsc": "^1.0.9"
+  },
+  "peerDependencyRules": {
+    "ignoreMissing": [
+      "@algolia/client-search"
+    ]
   },
   "prettier": {
     "singleQuote": true,
