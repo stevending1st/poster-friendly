@@ -5,15 +5,12 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "prettier": "prettier --write ./src",
     "test": "lint-staged  &&  npm run lint",
-    "rm:dist": "rimraf dist",
+    "rm:dist": "rimraf dist ./website/.vitepress/dist",
     "docs:dev": "vitepress dev website",
-    "docs:build": "vitepress build website",
+    "docs:build": "vue-tsc && vitepress build website",
     "docs:preview": "vitepress preview website"
   },
   "dependencies": {

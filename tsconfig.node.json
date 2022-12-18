@@ -6,6 +6,5 @@
     "lib": ["ES2015"],
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
-  },
-  "include": ["vite.config.ts"]
+  }
 }
