@@ -54,14 +54,14 @@ const rules = reactive<FormRules>({
       <el-form
         ref="configurationFormRef"
         :model="configForm"
-        label-width="140px"
+        label-width="200px"
         label-position="left"
         :rules="rules"
         class="w-full"
         size="large"
       >
         <h4>Step 1: Enter or select the URL of the template.</h4>
-        <el-form-item label="Template URL" prop="templateURL">
+        <el-form-item label="The template's URL" prop="templateURL">
           <el-input
             placeholder="Please type the URL of the template file."
             v-model="configForm.templateURL"
@@ -85,14 +85,14 @@ const rules = reactive<FormRules>({
           </el-button>
         </div>
 
-        <h4>Step 2: Enter the owner and name of the repo.</h4>
-        <el-form-item label="Repo owner" prop="repoOwner">
+        <h4>Step 2: Enter the owner and name of the repository.</h4>
+        <el-form-item label="The repository's owner" prop="repoOwner">
           <el-input
             placeholder="Type the owner of the code repository."
             v-model="configForm.repoOwner"
           />
         </el-form-item>
-        <el-form-item label="Repo name" prop="repoName">
+        <el-form-item label="The repository's name" prop="repoName">
           <el-input
             placeholder="Type the name of the code repository."
             v-model="configForm.repoName"
@@ -100,7 +100,7 @@ const rules = reactive<FormRules>({
         </el-form-item>
 
         <h4>Step 3: Select the destination of the template.</h4>
-        <el-form-item label="Post destination" prop="postDestination">
+        <el-form-item label="The posting's destination" prop="postDestination">
           <el-checkbox-group
             size="large"
             placeholder="5555"

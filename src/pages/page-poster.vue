@@ -111,12 +111,13 @@ const preview = async (ref: FormInstance | undefined) => {
 <template>
   <div class="w-full flex justify-center">
     <div v-if="!loading" class="w-95% sm:w-85% md:w-50%">
-      <h1 class="break-all">
+      <h1 class="break-all mt-10">
         <a :href="`https://github.com/${owner}/${name}`" target="_blank">
           {{ owner }}/{{ name }}
         </a>
       </h1>
       <el-form
+        class="mb-10"
         ref="formRef"
         :model="data"
         :rules="rules"

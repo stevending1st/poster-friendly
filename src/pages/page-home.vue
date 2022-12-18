@@ -35,6 +35,17 @@ const featuresContent = [
   },
 ];
 
+const workInProgressContent = [
+  {
+    icon: 'i-carbon-tablet-landscape',
+    text: 'Editor-friendly playground.',
+  },
+  {
+    icon: 'i-carbon-template',
+    text: 'More common public templates.',
+  },
+];
+
 const formInfo = ref<FormInfoType>({ name: '', description: '' });
 const formRules = ref<FormRules>({});
 const formData = ref<FormDataType>({});
@@ -91,15 +102,23 @@ const onCopyLink = async (
   <el-container class="w-full" direction="vertical">
     <common-header />
     <main class="p-0">
-      <div class="bg-blue h-50 py-20">
+      <div class="bg-orange color-white h-50 py-20">
         <h2 class="text-size-5xl text-center mb-5">Poster Friendly</h2>
         <p class="text-center text-size-20px pb-10 my-0">
           A complete solution for GitHub (Gitee) Issue and Discussion templates.
         </p>
+        <p class="text-center pb-8">
+          <a
+            class="bg-#FEFEFE color-black px-5 py-3 rd font-600 text-decoration-none"
+            link
+            href="#config-form"
+            >Get Started</a
+          >
+        </p>
       </div>
 
       <div
-        class="bg-orange py-20 block px-10px xs:px-20px sm:px-30px md:flex md:flex-col md:items-center"
+        class="bg-#fefefe py-20 block px-10px xs:px-20px sm:px-30px md:flex md:flex-col md:items-center"
         id="features"
       >
         <h2 class="text-size-3xl text-start">Poster Friendly will help you:</h2>
@@ -121,8 +140,8 @@ const onCopyLink = async (
       </div>
 
       <div
-        class="bg-yellow flex flex-col items-center px-30px sm:px-40px py-20"
-        id="features"
+        class="bg-#d1e4e3 flex flex-col items-center px-30px sm:px-40px py-20"
+        id="config-form"
       >
         <h2 class="text-size-3xl text-start">Create your templates now:</h2>
         <p class="text-start">You just need to fill out a form!</p>
@@ -133,6 +152,28 @@ const onCopyLink = async (
           @copyLink="onCopyLink"
           :isSupportedClipboard="isSupportedClipboard"
         />
+      </div>
+
+      <div
+        class="bg-#fefefe py-20 block px-10px xs:px-20px sm:px-30px md:flex md:flex-col md:items-center"
+        id="work-in-progress"
+      >
+        <h2 class="text-size-3xl text-start">🚧 Work in progress</h2>
+
+        <ul class="list-none pl-0">
+          <li
+            class="flex items-center mb-10"
+            v-for="(featuresItems, index) in workInProgressContent"
+            :key="index"
+          >
+            <div :class="`${featuresItems.icon} text-size-8 mr-2`" />
+            <div class="flex-1">
+              <p class="text-size-2xl p-0 m-0">
+                {{ featuresItems.text }}
+              </p>
+            </div>
+          </li>
+        </ul>
       </div>
     </main>
   </el-container>
