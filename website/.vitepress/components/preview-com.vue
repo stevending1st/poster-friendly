@@ -13,5 +13,13 @@ const converter = new showdown.Converter();
 
 <template>
   <h1 v-if="!!title">{{ title }}</h1>
-  <div class="mb-5" v-html="converter.makeHtml(body)" />
+  <div class="markdown-body mb-5" v-html="converter.makeHtml(body)" />
 </template>
+
+<style scoped>
+.markdown-body {
+  word-break: break-word !important;
+  background-color: inherit !important;
+  color: inherit !important;
+}
+</style>

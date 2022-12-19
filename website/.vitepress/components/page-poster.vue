@@ -24,8 +24,7 @@ const info = ref<FormInfoType>({ name: '', description: '' });
 const rules = ref<FormRules>({});
 const data = ref<FormDataType>({});
 
-// const { query } = useRoute();
-const { href, search } = location;
+const { search } = location;
 const searchParams = new URLSearchParams(search);
 let query: PosterPageProp = {};
 searchParams.forEach((value, key) => (query = { ...query, [key]: value }));
@@ -42,12 +41,10 @@ const {
 const getyaml = async () => {
   loading.value = true;
   if (templateURL) {
-    console.log('templateURL as string:', templateURL as string);
     // const content = await getConfigFileData(templateURL as string);
     // const formData = yaml.parse(content || '');
     const formData = yaml.parse(ymldata);
     const [thisFormInfo, thisRules, thisData] = getFormItemAndData(formData);
-    console.log('getyaml:', thisFormInfo, thisRules, thisData);
     info.value = thisFormInfo;
     rules.value = thisRules;
     data.value = thisData;
@@ -88,12 +85,6 @@ const post = async (
     assignees: assignees as string,
     category: category as string,
   };
-  console.log(
-    'postMeta:',
-    postMeta,
-    postDestination == PostDestinationEnum.GITEE_ISSUE,
-    postDestination == PostDestinationEnum.GITHUB_ISSUE,
-  );
   const url = (
     postDestination === PostDestinationEnum.GITHUB_ISSUE
       ? generateGitHubIssueURL
@@ -109,14 +100,30 @@ const preview = async (ref: FormInstance | undefined) => {
   body.value = generateBodyData(info.value, data.value);
   isPreview.value = true;
 };
+
+const hasGitHub =
+  postDestinationArr.includes(PostDestinationEnum.GITHUB_DISCUSSION) ||
+  postDestinationArr.includes(PostDestinationEnum.GITHUB_ISSUE);
+const hasGitee = postDestinationArr.includes(PostDestinationEnum.GITEE_ISSUE);
 </script>
 
 <template>
+  <PosterPageHeader
+    :hasGitHub="hasGitHub"
+    :hasGitee="hasGitee"
+    :owner="owner"
+    :name="name"
+  />
+
   <div class="w-full flex justify-center">
     <div v-if="!loading" class="w-95% sm:w-85% md:w-50%">
-      <h1 class="break-all mt-10">
-        <a :href="`https://github.com/${owner}/${name}`" target="_blank">
-          {{ owner }}/{{ name }}
+      <h1 class="break-all mt-10 font-size-2!">
+        <a
+          :href="`https://github.com/${owner}/${name}`"
+          target="_blank"
+          class="line-height-5!"
+        >
+          {{ owner }}/{{ name }}'s {{ info.name }}
         </a>
       </h1>
       <el-form

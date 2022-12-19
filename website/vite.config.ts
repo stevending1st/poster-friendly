@@ -44,9 +44,10 @@ export default {
       ],
       rules: [
         ['text-decoration-none', { 'text-decoration': 'none' }],
+        [/^font-size-(\d+)$/, ([, d]) => ({ 'font-size': `${d}rem` })],
         [
-          /^font-size-(\d+)$/,
-          ([, d]) => ({ 'font-size': `${d}rem !important` }),
+          /^line-height-(\d+)$/,
+          ([, d]) => ({ 'line-height': `${(Number(d) || 4) / 4}` }),
         ],
       ],
     }),

@@ -16,14 +16,13 @@ const { formItem, data } = defineProps<{
   data: FormDataType;
 }>();
 const markdownIt = new MarkdownIt();
-console.log('data>>>>', data);
 </script>
 
 <template>
   <div>
     <!--MARKDOWN-->
     <div
-      class="markdown-body github-markdown-render mt-6 mb-1.5!"
+      class="markdown-body mt-6 mb-1.5!"
       v-if="formItem.type === FormItemTypeEnum.MARKDOWN"
       v-html="markdownIt.render((formItem.attributes as MarkdownAttributesType).value)"
     />
@@ -37,7 +36,7 @@ console.log('data>>>>', data);
       :prop="formItem.id"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mt-6 mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.INPUT && (formItem.attributes as InputAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as InputAttributesType)?.description || '')"
       />
@@ -56,7 +55,7 @@ console.log('data>>>>', data);
       :prop="formItem.id"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mt-6 mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.TEXTAREA && (formItem.attributes as TextareaAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as TextareaAttributesType)?.description || '')"
       />
@@ -76,7 +75,7 @@ console.log('data>>>>', data);
       :prop="formItem.id"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mt-6 mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.DROPDOWN && (formItem.attributes as DropdownAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as DropdownAttributesType)?.description || '')"
       />
@@ -105,7 +104,7 @@ console.log('data>>>>', data);
       :label="(formItem.attributes as CheckboxesAttributesType).label"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mt-6 mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.CHECKBOXES && (formItem.attributes as CheckboxesAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as CheckboxesAttributesType)?.description || '')"
       />
@@ -129,7 +128,7 @@ console.log('data>>>>', data);
               <div class="mt-1 ml-3 text-2" v-else />
             </div>
             <div
-              class="markdown-body github-markdown-render pl-1"
+              class="markdown-body pl-1"
               v-html="markdownIt.render(item.label)"
             />
           </div>
@@ -160,7 +159,7 @@ console.log('data>>>>', data);
   height: initial;
 }
 
-.github-markdown-render {
+.markdown-body {
   word-break: break-word !important;
   background-color: inherit !important;
   color: inherit !important;
