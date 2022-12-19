@@ -159,4 +159,10 @@ console.log('data>>>>', data);
 :deep(.el-checkbox.el-checkbox--large) {
   height: initial;
 }
+
+.github-markdown-render {
+  word-break: break-word !important;
+  background-color: inherit !important;
+  color: inherit !important;
+}
 </style>

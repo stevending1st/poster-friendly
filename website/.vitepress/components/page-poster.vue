@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { FormInstance, FormRules } from 'element-plus';
 import { ref, watchEffect } from 'vue';
-import { useRoute } from 'vue-router';
 import yaml from 'yaml';
 
 import { ymldata } from '../test/fromdata';
-import { getConfigFileData } from '../utils/configFileURL';
 import { PostDestinationEnum } from '../utils/platform';
 import {
   generateBodyData,
@@ -19,13 +17,18 @@ import {
   verify,
   getFormItemAndData,
 } from '../utils/form';
+import { PosterPageProp } from '../utils/posterPage';
 
 const loading = ref<boolean>(false);
 const info = ref<FormInfoType>({ name: '', description: '' });
 const rules = ref<FormRules>({});
 const data = ref<FormDataType>({});
 
-const { query } = useRoute();
+// const { query } = useRoute();
+const { href, search } = location;
+const searchParams = new URLSearchParams(search);
+let query: PosterPageProp = {};
+searchParams.forEach((value, key) => (query = { ...query, [key]: value }));
 const {
   postDestination,
   owner,
