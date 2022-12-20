@@ -1,11 +1,15 @@
 export default {
+  lang: 'en-US',
   title: 'Poster Friendly',
   description:
     'A complete solution for GitHub (Gitee) Issue and Discussion templates.',
-  lang: 'en-US',
+
+  lastUpdated: true,
   cleanUrls: 'with-subfolders',
+
   cacheDir: '../.cache',
+
   themeConfig: {
-    nav: [],
+    nav: [{ text: 'Guide', link: '/guide' }],
   },
 };
