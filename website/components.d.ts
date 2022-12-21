@@ -23,7 +23,6 @@ declare module '@vue/runtime-core' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     FormItems: typeof import('./.vitepress/components/form-items.vue')['default']
-    PageAbout: typeof import('./.vitepress/pages/page-about.vue')['default']
     PageHome: typeof import('./.vitepress/components/page-home.vue')['default']
     PagePoster: typeof import('./.vitepress/components/page-poster.vue')['default']
     PosterPageHeader: typeof import('./.vitepress/components/poster-page-header.vue')['default']

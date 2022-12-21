@@ -4,7 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "lib": ["ES2015"],
+    "rootDir": ".",
+    "outDir": ".",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "include": ["website/**/*"]
 }

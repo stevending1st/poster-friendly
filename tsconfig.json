@@ -14,10 +14,10 @@
     "noEmit": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
+    "website/**/*.ts",
+    "website/**/*.d.ts",
+    "website/**/*.tsx",
+    "website/**/*.vue",
     "vite-env.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
