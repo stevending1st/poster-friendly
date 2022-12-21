@@ -2,5 +2,5 @@
 
 . "$(dirname "$0")/_/husky.sh"
 
-npm run build
+npm run docs:build
 npm run rm:dist

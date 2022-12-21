@@ -5,15 +5,12 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "prettier": "prettier --write ./src",
     "test": "lint-staged  &&  npm run lint",
-    "rm:dist": "rimraf dist",
+    "rm:dist": "rimraf dist ./website/.vitepress/dist",
     "docs:dev": "vitepress dev website",
-    "docs:build": "vitepress build website",
+    "docs:build": "vue-tsc && vitepress build website",
     "docs:preview": "vitepress preview website"
   },
   "dependencies": {
@@ -32,6 +29,7 @@
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.10",
     "@iconify-json/simple-icons": "^1.1.34",
+    "@types/fs-extra": "^9.0.13",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^18.11.9",
     "@types/showdown": "^2.0.0",
@@ -45,6 +43,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "eslint": "^8.29.0",
     "eslint-plugin-vue": "^9.8.0",
+    "fs-extra": "^11.1.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",

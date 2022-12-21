@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@iconify-json/carbon': ^1.1.10
   '@iconify-json/simple-icons': ^1.1.34
+  '@types/fs-extra': ^9.0.13
   '@types/markdown-it': ^12.2.3
   '@types/node': ^18.11.9
   '@types/showdown': ^2.0.0
@@ -20,6 +21,7 @@ specifiers:
   element-plus: ^2.2.21
   eslint: ^8.29.0
   eslint-plugin-vue: ^9.8.0
+  fs-extra: ^11.1.0
   github-markdown-css: ^5.1.0
   husky: ^8.0.2
   lint-staged: ^13.1.0
@@ -55,6 +57,7 @@ dependencies:
 devDependencies:
   '@iconify-json/carbon': 1.1.10
   '@iconify-json/simple-icons': 1.1.34
+  '@types/fs-extra': 9.0.13
   '@types/markdown-it': 12.2.3
   '@types/node': 18.11.9
   '@types/showdown': 2.0.0
@@ -68,6 +71,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
   eslint: 8.29.0
   eslint-plugin-vue: 9.8.0_eslint@8.29.0
+  fs-extra: 11.1.0
   husky: 8.0.2
   lint-staged: 13.1.0
   prettier: 2.8.1
@@ -655,6 +659,12 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
+    dev: true
+
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 18.11.9
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -2041,6 +2051,15 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
+  /fs-extra/11.1.0:
+    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
+    engines: {node: '>=14.14'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
+
   /fs.realpath/1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
@@ -2108,6 +2127,10 @@ packages:
       ignore: 5.2.1
       merge2: 1.4.1
       slash: 3.0.0
+    dev: true
+
+  /graceful-fs/4.2.10:
+    resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
 
   /grapheme-splitter/1.0.4:
@@ -2281,6 +2304,14 @@ packages:
 
   /jsonc-parser/3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
+    dev: true
+
+  /jsonfile/6.1.0:
+    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
+    dependencies:
+      universalify: 2.0.0
+    optionalDependencies:
+      graceful-fs: 4.2.10
     dev: true
 
   /kolorist/1.6.0:
@@ -3070,6 +3101,11 @@ packages:
       unplugin: 0.10.2
     transitivePeerDependencies:
       - rollup
+    dev: true
+
+  /universalify/2.0.0:
+    resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
+    engines: {node: '>= 10.0.0'}
     dev: true
 
   /unocss/0.46.5_vite@3.2.5:

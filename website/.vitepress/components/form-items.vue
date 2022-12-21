@@ -22,7 +22,7 @@ const markdownIt = new MarkdownIt();
   <div>
     <!--MARKDOWN-->
     <div
-      class="markdown-body github-markdown-render mt-6 mb-1.5!"
+      class="markdown-body mb-1.5!"
       v-if="formItem.type === FormItemTypeEnum.MARKDOWN"
       v-html="markdownIt.render((formItem.attributes as MarkdownAttributesType).value)"
     />
@@ -36,7 +36,7 @@ const markdownIt = new MarkdownIt();
       :prop="formItem.id"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.INPUT && (formItem.attributes as InputAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as InputAttributesType)?.description || '')"
       />
@@ -55,7 +55,7 @@ const markdownIt = new MarkdownIt();
       :prop="formItem.id"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.TEXTAREA && (formItem.attributes as TextareaAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as TextareaAttributesType)?.description || '')"
       />
@@ -75,7 +75,7 @@ const markdownIt = new MarkdownIt();
       :prop="formItem.id"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.DROPDOWN && (formItem.attributes as DropdownAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as DropdownAttributesType)?.description || '')"
       />
@@ -104,7 +104,7 @@ const markdownIt = new MarkdownIt();
       :label="(formItem.attributes as CheckboxesAttributesType).label"
     >
       <div
-        class="markdown-body github-markdown-render mt-6 mb-1.5!"
+        class="markdown-body mb-1.5!"
         v-if="formItem.type === FormItemTypeEnum.CHECKBOXES && (formItem.attributes as CheckboxesAttributesType)?.description"
         v-html="markdownIt.render((formItem.attributes as CheckboxesAttributesType)?.description || '')"
       />
@@ -128,7 +128,7 @@ const markdownIt = new MarkdownIt();
               <div class="mt-1 ml-3 text-2" v-else />
             </div>
             <div
-              class="markdown-body github-markdown-render pl-1"
+              class="markdown-body pl-1"
               v-html="markdownIt.render(item.label)"
             />
           </div>
@@ -157,5 +157,11 @@ const markdownIt = new MarkdownIt();
 
 :deep(.el-checkbox.el-checkbox--large) {
   height: initial;
+}
+
+.markdown-body {
+  word-break: break-word !important;
+  background-color: inherit !important;
+  color: inherit !important;
 }
 </style>

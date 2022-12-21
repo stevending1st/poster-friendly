@@ -14,16 +14,18 @@ const { name, description, body } = formInfo;
 <template>
   <div class="content text-gray-500 flex flex-col items-center justify-center">
     <div class="flex flex-col items-start w-full">
-      <h2 class="w-full">{{ name }}</h2>
       <p class="w-full">{{ description }}</p>
     </div>
     <div class="py-5 w-full">
       <slot name="title"></slot>
 
       <template v-if="body">
-        <div fill v-for="(formItem, index) in body" :key="index">
-          <form-items :formItem="formItem" :data="data" />
-        </div>
+        <form-items
+          v-for="(formItem, index) in body"
+          :key="index"
+          :formItem="formItem"
+          :data="data"
+        />
       </template>
     </div>
   </div>
