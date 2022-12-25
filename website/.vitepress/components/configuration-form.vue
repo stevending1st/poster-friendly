@@ -57,14 +57,22 @@ const formRules = ref<FormRules>({});
 const formData = ref<FormDataType>({});
 const dialogFormVisible = ref(false);
 
-const onPreview = async ({ templateURL }: ConfigFormType) => {
-  const content = await getConfigFileData(templateURL);
-  const yamlData = yaml.parse(content || '');
-  const [thisFormInfo, thisRules, thisData] = getFormItemAndData(yamlData);
-  formInfo.value = thisFormInfo;
-  formRules.value = thisRules;
-  formData.value = thisData;
-  dialogFormVisible.value = true;
+const onPreview = async (
+  configurationFormRef: FormInstance | undefined,
+  { templateURL }: ConfigFormType,
+) => {
+  try {
+    await configurationFormRef?.validateField('templateURL');
+    const content = await getConfigFileData(templateURL);
+    const yamlData = yaml.parse(content || '');
+    const [thisFormInfo, thisRules, thisData] = getFormItemAndData(yamlData);
+    formInfo.value = thisFormInfo;
+    formRules.value = thisRules;
+    formData.value = thisData;
+    dialogFormVisible.value = true;
+  } catch (error: any) {
+    console.error(`[Error]: Field validation error.`, error);
+  }
 };
 
 const splicingURL = ({
@@ -133,7 +141,7 @@ const onCopyLink = async (
           type="primary"
           size="large"
           round
-          @click="onPreview(configForm)"
+          @click="onPreview(configurationFormRef, configForm)"
         >
           <div class="i-carbon-view mr-2" />
           Preview
