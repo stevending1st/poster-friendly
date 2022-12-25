@@ -1,3 +1,7 @@
+import { getTemplate } from './utils/sidebar';
+
+const templateSidebar = getTemplate();
+
 export default {
   lang: 'en-US',
   title: 'Poster Friendly',
@@ -10,6 +14,10 @@ export default {
   cacheDir: '../.cache',
 
   themeConfig: {
-    nav: [{ text: 'Guide', link: '/guide' }],
+    nav: [{ text: 'Guide', link: '/guide' }, ...(templateSidebar || [])],
+
+    sidebar: {
+      '/template/': templateSidebar,
+    },
   },
 };
