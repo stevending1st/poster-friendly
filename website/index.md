@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-    #   link: /guide/
+      link: '#config-form'
 
 features:
   - title: Quickly create Issue and Discussion templates and render them on the web.
