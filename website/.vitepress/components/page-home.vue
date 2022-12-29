@@ -18,7 +18,9 @@ const workInProgressContent = [
         class="flex flex-col items-center px-30px sm:px-40px py-20"
         id="config-form"
       >
-        <h2 class="text-size-3xl text-start">Create your templates now:</h2>
+        <h2 class="text-size-3xl text-start mb-5">
+          Create your templates now:
+        </h2>
         <p class="text-start">You just need to fill out a form!</p>
 
         <div class="py-5 w-full sm:w-85% md:w-70% lg:w-50%">
@@ -30,7 +32,7 @@ const workInProgressContent = [
         class="py-3 block px-10px xs:px-20px sm:px-30px md:flex md:flex-col md:items-center"
         id="work-in-progress"
       >
-        <h2 class="text-size-3xl text-start mb-3">🚧 Work in progress</h2>
+        <h2 class="text-size-3xl text-start mb-7">🚧 Work in progress</h2>
 
         <ul class="list-none pl-0">
           <li
