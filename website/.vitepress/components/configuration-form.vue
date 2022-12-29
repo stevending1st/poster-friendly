@@ -2,7 +2,7 @@
 import yaml from 'yaml';
 import { reactive, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
-import { FormInstance, FormRules } from 'element-plus';
+import { ElMessage, FormInstance, FormRules } from 'element-plus';
 
 import { ConfigFormType } from '../utils/configForm';
 import {
@@ -14,6 +14,11 @@ import {
 } from '../utils/form';
 import { getConfigFileData } from '../utils/configFileURL';
 import { defaultTemplateList } from '../utils/templateList';
+
+const copySuccessMsg = () =>
+  ElMessage.success({
+    message: 'Copy link successful!',
+  });
 
 const { copy, isSupported: isSupportedClipboard } = useClipboard();
 
@@ -111,6 +116,7 @@ const onCopyLink = async (
   if (!(await verify(configurationFormRef))) return;
   const url = splicingURL(configForm);
   copy(url);
+  copySuccessMsg();
 };
 </script>
 
