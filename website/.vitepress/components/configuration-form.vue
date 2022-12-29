@@ -13,6 +13,7 @@ import {
   FormDataType,
 } from '../utils/form';
 import { getConfigFileData } from '../utils/configFileURL';
+import { defaultTemplateList } from '../utils/templateList';
 
 const { copy, isSupported: isSupportedClipboard } = useClipboard();
 
@@ -56,6 +57,9 @@ const formInfo = ref<FormInfoType>({ name: '', description: '' });
 const formRules = ref<FormRules>({});
 const formData = ref<FormDataType>({});
 const dialogFormVisible = ref(false);
+
+const onChoicetTemplate = (url: string, configForm: ConfigFormType) =>
+  (configForm.templateURL = url);
 
 const onPreview = async (
   configurationFormRef: FormInstance | undefined,
@@ -130,12 +134,19 @@ const onCopyLink = async (
           v-model="configForm.templateURL"
         />
       </el-form-item>
-      <!-- <el-form-item label="Template" prop="region">
-          <el-select placeholder="Activity zone" class="w-full">
-            <el-option label="Zone one" value="shanghai" />
-            <el-option label="Zone two" value="beijing" />
-          </el-select>
-        </el-form-item> -->
+      <el-form-item label="Recommendation Template" prop="changeTemplateURL">
+        <el-select
+          placeholder="You can choose the default template."
+          class="w-full"
+        >
+          <el-option
+            v-for="items of defaultTemplateList"
+            :label="items.name"
+            :value="items.url"
+            @click="onChoicetTemplate(items.url, configForm)"
+          />
+        </el-select>
+      </el-form-item>
       <div class="flex justify-start mb-5">
         <el-button
           type="primary"
