@@ -16,6 +16,13 @@ export default {
   themeConfig: {
     nav: [{ text: 'Guide', link: '/guide' }, ...(templateSidebar || [])],
 
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/stevending1st/poster-friendly',
+      },
+    ],
+
     sidebar: {
       '/template/': templateSidebar,
     },
