@@ -3,7 +3,6 @@ import { FormInstance, FormRules } from 'element-plus';
 import { ref, watchEffect } from 'vue';
 import yaml from 'yaml';
 
-import { ymldata } from '../test/fromdata';
 import { PostDestinationEnum } from '../utils/platform';
 import {
   generateBodyData,
@@ -18,6 +17,7 @@ import {
   getFormItemAndData,
 } from '../utils/form';
 import { PosterPageProp } from '../utils/posterPage';
+import { getConfigFileData } from '../utils/configFileURL';
 
 const loading = ref<boolean>(false);
 const info = ref<FormInfoType>({ name: '', description: '' });
@@ -41,9 +41,8 @@ const {
 const getyaml = async () => {
   loading.value = true;
   if (templateURL) {
-    // const content = await getConfigFileData(templateURL as string);
-    // const formData = yaml.parse(content || '');
-    const formData = yaml.parse(ymldata);
+    const content = await getConfigFileData(templateURL as string);
+    const formData = yaml.parse(content || '');
     const [thisFormInfo, thisRules, thisData] = getFormItemAndData(formData);
     info.value = thisFormInfo;
     rules.value = thisRules;

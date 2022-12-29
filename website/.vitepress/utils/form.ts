@@ -162,7 +162,11 @@ export const getFormItemAndData = (formInfo: FormInfoType) => {
           ...(rules as FormRules),
           [key]: [
             {
-              type: type === FormItemTypeEnum.DROPDOWN ? 'array' : 'string',
+              type:
+                type === FormItemTypeEnum.DROPDOWN &&
+                !!(attributes as DropdownAttributesType).multiple
+                  ? 'array'
+                  : 'string',
               required: true,
               message: 'This is required.',
               trigger: type === FormItemTypeEnum.DROPDOWN ? 'change' : 'blur',

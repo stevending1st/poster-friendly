@@ -51,6 +51,22 @@ body:
       multiple: true
     validations:
       required: true
+  - type: dropdown
+    id: download2
+    attributes:
+      label: How did you download the software?
+      description: "dropdown description"
+      options:
+        - Homebrew
+        - MacPorts
+        - apt-get
+        - Built from source
+        - Built1
+        - Built2
+        - Built3
+      multiple: false
+    validations:
+      required: true
   - type: checkboxes
     id: kkk555
     attributes:
