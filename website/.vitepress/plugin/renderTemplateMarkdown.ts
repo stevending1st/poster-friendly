@@ -2,6 +2,7 @@ import type { Plugin } from 'vite';
 
 import fs from 'fs-extra';
 import yaml from 'yaml';
+import matter from 'gray-matter';
 
 const reConfigFile = /(\S*website[\/\\]template\S*[\/\\])([^/\\\s]+\.md)$/;
 
@@ -29,6 +30,10 @@ editLink: true
 ---
 `;
 
+export const mdScript = () => `\n<script setup>
+import "uno.css";
+</script>\n`;
+
 export const mdMeta = (name?: string, description?: string) => `# ${name}
 
 ${description}
@@ -45,17 +50,20 @@ export const transform = async (src: string, id: string) => {
   if (!id.includes('template')) return src;
   reConfigFile.lastIndex = 0;
   if (reConfigFile.test(id)) {
-    console.log('🚀 test,transform--->', id);
+    console.log('🚀 test,transform--->', id, src);
 
     reConfigFile.lastIndex = 0;
     const configFileFolder = reConfigFile.exec(id)?.[1];
     const yamlFileString =
       configFileFolder && (await readYamlFile(configFileFolder));
     const config = yaml.parse(yamlFileString || '');
+    const { content: mdFileContentString } = matter(src);
     const code =
       mdFrontmatter(config?.name) +
+      mdScript() +
       mdMeta(config?.name, config?.description) +
-      (yamlFileString && mdYamlCode(yamlFileString));
+      (yamlFileString && mdYamlCode(yamlFileString)) +
+      mdFileContentString;
     return code;
   }
 };
