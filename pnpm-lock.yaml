@@ -21,6 +21,7 @@ specifiers:
   element-plus: ^2.2.21
   eslint: ^8.29.0
   eslint-plugin-vue: ^9.8.0
+  filesize: ^10.0.6
   fs-extra: ^11.1.0
   github-markdown-css: ^5.1.0
   gray-matter: ^4.0.3
@@ -72,6 +73,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
   eslint: 8.29.0
   eslint-plugin-vue: 9.8.0_eslint@8.29.0
+  filesize: 10.0.6
   fs-extra: 11.1.0
   gray-matter: 4.0.3
   husky: 8.0.2
@@ -2043,6 +2045,11 @@ packages:
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flat-cache: 3.0.4
+    dev: true
+
+  /filesize/10.0.6:
+    resolution: {integrity: sha512-rzpOZ4C9vMFDqOa6dNpog92CoLYjD79dnjLk2TYDDtImRIyLTOzqojCb05Opd1WuiWjs+fshhCgTd8cl7y5t+g==}
+    engines: {node: '>= 10.4.0'}
     dev: true
 
   /fill-range/7.0.1:

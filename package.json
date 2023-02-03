@@ -43,6 +43,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "eslint": "^8.29.0",
     "eslint-plugin-vue": "^9.8.0",
+    "filesize": "^10.0.6",
     "fs-extra": "^11.1.0",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.2",
