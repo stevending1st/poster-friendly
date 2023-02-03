@@ -10,7 +10,6 @@ declare module '@vue/runtime-core' {
     ConfigurationForm: typeof import('./.vitepress/components/configuration-form.vue')['default']
     CreateButton: typeof import('./.vitepress/components/create-button.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
     ElCol: typeof import('element-plus/es')['ElCol']
