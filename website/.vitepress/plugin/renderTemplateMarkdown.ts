@@ -6,9 +6,19 @@ import yaml from 'yaml';
 import matter from 'gray-matter';
 import { filesize } from 'filesize';
 
-const reConfigFile = /(\S*website[\/\\]template\S*[\/\\])([^/\\\s]+\.md)$/;
+const reConfigReadmeFile =
+  /(\S*website[\/\\]template\S*[\/\\])([^/\\\s]+\.md)$/;
+const reConfigFileRelAdr = /website[\/\\]template\S*[\/\\][^/\\\s]+\.ya?ml$/g;
 
 const dealEscape = (str?: string) => str?.replaceAll('`', '\u{5C}\u{60}') || '';
+
+export const getRelativeRoute = (readmeFilePath: string) => {
+  reConfigFileRelAdr.lastIndex = 0;
+  const configFileRelativePath = reConfigFileRelAdr
+    .exec(readmeFilePath)?.[0]
+    ?.replaceAll('\\', '/');
+  return configFileRelativePath;
+};
 
 export const readYamlFile = async (yamlFolder: string) => {
   const yamlPath = yamlFolder + 'index.yaml',
@@ -22,11 +32,11 @@ export const readYamlFile = async (yamlFolder: string) => {
     if (await fs.existsSync(ymlPath)) {
       const content = await readFile(ymlPath);
       const { mtimeMs, size } = await readFileInfo(ymlPath);
-      return { content, mtimeMs, size };
+      return { content, mtimeMs, size, path: ymlPath };
     } else if (await fs.existsSync(yamlPath)) {
       const content = await readFile(yamlPath);
       const { mtimeMs, size } = await readFileInfo(yamlPath);
-      return { content, mtimeMs, size };
+      return { content, mtimeMs, size, path: yamlPath };
     }
   } catch (error: unknown) {
     console.log(error);
@@ -43,12 +53,12 @@ export const mdScript = (content?: string) => `\n<script setup lang="ts">
 import 'element-plus/dist/index.css';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import "uno.css";
+import yaml from 'yaml';
 
 import {
   FormInfoType,
   getFormItemAndData,
 } from './../../../../.vitepress/utils/form';
-import yaml from 'yaml';
 
 const info = ref<FormInfoType>({ name: '', description: '' });
 const rules = ref<FormRules>({});
@@ -64,12 +74,13 @@ data.value = thisData;
 
 export const mdMeta = (
   name?: string,
+  relativeRoute?: string,
   description?: string,
   updateTime?: string,
   fileSize?: string,
 ) => `\n# ${name}
 
-<TemplateInfo updateTime="${updateTime}" fileSize="${fileSize}" />
+<TemplateInfo updateTime="${updateTime}" fileSize="${fileSize}" relativeRoute="${relativeRoute}" />
 <p class="mt-4">${description}</p>\n`;
 
 export const mdYamlCode = (yamlString: string) => `\n## Yaml File
@@ -98,14 +109,15 @@ export const renderForm = `\n## Preview
 
 export const transform = async (src: string, id: string) => {
   if (!id.includes('template')) return src;
-  reConfigFile.lastIndex = 0;
-  if (reConfigFile.test(id)) {
+  reConfigReadmeFile.lastIndex = 0;
+  if (reConfigReadmeFile.test(id)) {
     console.log('🚀 id--->', id, 'src--->', src);
 
-    reConfigFile.lastIndex = 0;
-    const configFileFolder = reConfigFile.exec(id)?.[1];
+    reConfigReadmeFile.lastIndex = 0;
+    const configFileFolder = reConfigReadmeFile.exec(id)?.[1];
     const {
       content: yamlFileString,
+      path,
       mtimeMs,
       size,
     } = (configFileFolder && (await readYamlFile(configFileFolder))) || {};
@@ -113,11 +125,13 @@ export const transform = async (src: string, id: string) => {
     const fileSize = size ? filesize(size) : undefined;
     const config = yaml.parse(yamlFileString || '');
     const { content: mdFileContentString } = matter(src);
+    const relativeRoute = getRelativeRoute(path || '');
     const code =
       mdFrontmatter(config?.name) +
       mdScript(dealEscape(yamlFileString)) +
       mdMeta(
         config?.name,
+        relativeRoute,
         config?.description,
         updateTime,
         fileSize?.toString(),
