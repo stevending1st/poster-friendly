@@ -11,7 +11,7 @@ export default {
   base: '/poster-friendly/',
 
   lastUpdated: true,
-  cleanUrls: 'with-subfolders',
+  cleanUrls: true,
 
   cacheDir: '../.cache',
 
