@@ -24,7 +24,9 @@ const workInProgressContent = [
         <p class="text-start">You just need to fill out a form!</p>
 
         <div class="py-5 w-full sm:w-85% md:w-70% lg:w-50%">
-          <configuration-form />
+          <ClientOnly>
+            <configuration-form />
+          </ClientOnly>
         </div>
       </div>
 
