@@ -9,5 +9,6 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["website/**/*"]
+  "include": ["website/**/*"],
+  "exclude": []
 }
