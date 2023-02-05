@@ -1,20 +1,29 @@
 # poster-friendly
-poster-friendly
 
-## Vue 3 + TypeScript + Vite
+A complete solution for GitHub (Gitee) Issue and Discussion templates.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+![GitHub Repo stars](https://img.shields.io/github/stars/stevending1st/poster-friendly?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/stevending1st/poster-friendly?logoColor=blue&style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues-raw/stevending1st/poster-friendly?logoColor=green&style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr/stevending1st/poster-friendly?logoColor=9cf&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/stevending1st/poster-friendly?style=for-the-badge)
 
-### Recommended IDE Setup
+## ⚠️poster-friendly is in Alpha
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## Technology stack
 
-### Type Support For `.vue` Imports in TS
+- Language: [TypeScript][1]
+- Document engine: [VitePress][2]
+- Component suite: [Element Plus][3]
+<!-- - CI / CD: GitHub [Actions][] + [Vercel][] -->
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## Contributing
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+Contributions are always welcome!
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+See [CONTRIBUTING][4] for ways to get started.
 
+[1]: https://www.typescriptlang.org/
+[2]: https://vitepress.vuejs.org/
+[3]: http://element-plus.org/en-US/
+[4]: ./CONTRIBUTING
