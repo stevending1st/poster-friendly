@@ -21,6 +21,10 @@ export default {
         text: 'About',
         items: [
           {
+            text: 'Contributing',
+            link: 'https://github.com/stevending1st/poster-friendly/blob/main/CONTRIBUTING.md',
+          },
+          {
             text: 'Code of conduct',
             link: 'https://github.com/stevending1st/poster-friendly/blob/main/CODE_OF_CONDUCT.md',
           },
