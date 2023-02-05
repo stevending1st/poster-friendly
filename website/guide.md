@@ -21,7 +21,9 @@ Poster friendly is a complete solution for GitHub (Gitee) Issue and Discussion t
 
 ### Second, create the issue template link.
 
-<configuration-form />
+<ClientOnly>
+  <configuration-form />
+</ClientOnly>
 
 ### Third, use template links.
 
