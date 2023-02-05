@@ -12,7 +12,8 @@ Poster friendly is a complete solution for GitHub (Gitee) Issue and Discussion t
 
 1. We only support [GitHub's form](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-githubs-form-schema) for now, maybe [markdown](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/manually-creating-a-single-issue-template-for-your-repository) in the future.
 2. At present, the feature is experimental, the URL and API are still unstable, and we do not recommend that you use it in your major projects.
-   :::
+
+:::
 
 ## How to create an issue/discussion template for my project?
 
