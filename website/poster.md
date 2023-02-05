@@ -8,4 +8,6 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 import "uno.css";
 </script>
 
-<PagePoster />
+<ClientOnly>
+  <PagePoster />
+</ClientOnly>
