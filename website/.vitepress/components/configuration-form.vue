@@ -3,6 +3,7 @@ import yaml from 'yaml';
 import { reactive, ref } from 'vue';
 import { useClipboard } from '@vueuse/core';
 import { ElMessage, FormInstance, FormRules } from 'element-plus';
+import { withBase } from 'vitepress';
 
 import { ConfigFormType } from '../utils/configForm';
 import {
@@ -97,7 +98,7 @@ const splicingURL = ({
     templateURL,
     postDestination: postDestination.join(','),
   }).toString();
-  return `${origin}/poster-friendly/poster?${params}`;
+  return `${origin}${withBase(`/poster?${params}`)}`;
 };
 
 const onVisit = async (
