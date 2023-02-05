@@ -98,7 +98,7 @@ const splicingURL = ({
     templateURL,
     postDestination: postDestination.join(','),
   }).toString();
-  return `${origin}${withBase(`/poster?${params}`)}`;
+  return `${origin}${withBase(`/poster/?${params}`)}`;
 };
 
 const onVisit = async (
