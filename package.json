@@ -9,9 +9,9 @@
     "prettier": "prettier --write ./src",
     "test": "lint-staged  &&  npm run lint",
     "rm:dist": "rimraf dist ./website/.vitepress/dist",
-    "docs:dev": "vitepress dev website",
-    "docs:build": "vue-tsc && vitepress build website",
-    "docs:preview": "vitepress preview website"
+    "dev": "vitepress dev website",
+    "build": "vue-tsc && vitepress build website",
+    "preview": "vitepress preview website"
   },
   "dependencies": {
     "@vueuse/core": "^9.5.0",
