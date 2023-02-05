@@ -26,4 +26,4 @@ See [CONTRIBUTING][4] for ways to get started.
 [1]: https://www.typescriptlang.org/
 [2]: https://vitepress.vuejs.org/
 [3]: http://element-plus.org/en-US/
-[4]: ./CONTRIBUTING
+[4]: ./CONTRIBUTING.md
