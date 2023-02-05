@@ -50,10 +50,11 @@ editLink: true
 ---\n`;
 
 export const mdScript = (content?: string) => `\n<script setup lang="ts">
+import { ref } from "vue";
+import yaml from "yaml";
+import "uno.css";
 import 'element-plus/dist/index.css';
 import 'element-plus/theme-chalk/dark/css-vars.css';
-import "uno.css";
-import yaml from 'yaml';
 
 import {
   FormInfoType,
