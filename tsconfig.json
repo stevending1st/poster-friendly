@@ -10,15 +10,12 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ES2015", "ESNext", "DOM"],
+    "rootDir": ".",
+    "outDir": ".",
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "website/**/*.ts",
-    "website/**/*.d.ts",
-    "website/**/*.tsx",
-    "website/**/*.vue",
-    "vite-env.d.ts"
-  ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["website", "vite-env.d.ts"],
+  "exclude": []
 }
