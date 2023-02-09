@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { FormRules } from 'element-plus';
 
-import { FormInfoType, FormDataType } from '../utils/form';
+import { FormInfoType, FormDataType } from '../../utils/form';
 
 const { formInfo, data } = defineProps<{
   formInfo: Partial<FormInfoType>;

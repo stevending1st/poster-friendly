@@ -9,7 +9,7 @@ import {
   CheckboxesAttributesType,
   FormDataType,
   FormItemType,
-} from '../utils/form';
+} from '../../utils/form';
 
 const { formItem, data } = defineProps<{
   formItem: FormItemType<FormItemTypeEnum>;

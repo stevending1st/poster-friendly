@@ -3,21 +3,21 @@ import { FormInstance, FormRules } from 'element-plus';
 import { ref, watchEffect } from 'vue';
 import yaml from 'yaml';
 
-import { PostDestinationEnum } from '../utils/platform';
+import { PostDestinationEnum } from '../../utils/platform';
 import {
   generateBodyData,
   generateGiteeIssueURL,
   generateGitHubDiscussionURL,
   generateGitHubIssueURL,
-} from '../utils/postData';
+} from '../../utils/postData';
 import {
   FormDataType,
   FormInfoType,
   verify,
   getFormItemAndData,
-} from '../utils/form';
-import { PosterPageProp } from '../utils/posterPage';
-import { getConfigFileData } from '../utils/configFileURL';
+} from '../../utils/form';
+import { PosterPageProp } from '../../utils/posterPage';
+import { getConfigFileData } from '../../utils/configFileURL';
 
 const loading = ref<boolean>(false);
 const info = ref<FormInfoType>({ name: '', description: '' });

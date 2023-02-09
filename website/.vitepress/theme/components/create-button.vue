@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PostDestinationEnum } from '../utils/platform';
+import { PostDestinationEnum } from '../../utils/platform';
 
 const { postDestination, btnText } = defineProps<{
   postDestination: PostDestinationEnum;

@@ -20,9 +20,11 @@ export default {
   plugins: [
     renderTemplateMarkdownPlugin(),
     Components({
-      dirs: ['.vitepress/components'],
+      dirs: resolve(__dirname, '.vitepress/theme/components'),
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [ElementPlusResolver()],
+      dts: './.vitepress/components.d.ts',
+      transformer: 'vue3',
     }),
     AutoImport({
       imports: ['vue'],

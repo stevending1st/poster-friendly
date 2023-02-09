@@ -5,16 +5,16 @@ import { useClipboard } from '@vueuse/core';
 import { ElMessage, FormInstance, FormRules } from 'element-plus';
 import { withBase } from 'vitepress';
 
-import { ConfigFormType } from '../utils/configForm';
+import { ConfigFormType } from '../../utils/configForm';
 import {
   resetForm,
   verify,
   getFormItemAndData,
   FormInfoType,
   FormDataType,
-} from '../utils/form';
-import { getConfigFileData } from '../utils/configFileURL';
-import { defaultTemplateList } from '../utils/templateList';
+} from '../../utils/form';
+import { getConfigFileData } from '../../utils/configFileURL';
+import { defaultTemplateList } from '../../utils/templateList';
 
 const copySuccessMsg = () =>
   ElMessage.success({
